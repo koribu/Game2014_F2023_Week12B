@@ -20,6 +20,8 @@ public class EnemyBehavior : MonoBehaviour
 
     [SerializeField]
     LayerMask _groundLayers;
+
+    int _hitDamage = 25;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,4 +64,5 @@ public class EnemyBehavior : MonoBehaviour
         Debug.DrawLine(_groundCheckPoint.position, _frontGroundPoint.position, Color.green, .001f);
         Debug.DrawLine(_groundCheckPoint.position, _frontObstaclePoint.position, Color.green, .001f);
     }
+
 }

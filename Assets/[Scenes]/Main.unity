@@ -4925,6 +4925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4129233166564694539, guid: 5bc5b4836e2e8b24da202e322bd7adbc, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8644275457251906212, guid: 5bc5b4836e2e8b24da202e322bd7adbc, type: 3}
       propertyPath: _groundLayers.m_Bits
       value: 448

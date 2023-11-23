@@ -35,6 +35,7 @@ public class PlayerBehavior : MonoBehaviour
     LayerMask _groundingLayers;
 
     Animator _animator;
+    SoundManager _soundManager;
     void Start()
     {
         if(GameObject.Find("OnScreenController"))
@@ -44,6 +45,7 @@ public class PlayerBehavior : MonoBehaviour
       
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _soundManager = FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -139,6 +141,8 @@ public class PlayerBehavior : MonoBehaviour
         if(_isGrounded && (Input.GetKeyDown(KeyCode.Space) || leftJoystickVerticalInput > _treshold))
         {
             _rigidbody.AddForce(Vector2.up * _jumpingPower, ForceMode2D.Impulse);
+
+            _soundManager.PlaySound(Channel.PLAYER_SOUND_CHANNEL, Sound.PLAYER_JUMP_SFX);
         }
     }
 
@@ -149,8 +153,13 @@ public class PlayerBehavior : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            //get damage
 
-
-
-
+            _soundManager.PlaySound(Channel.PLAYER_HURT_CHANNEL, Sound.PLAYER_HURT_SFX);
+        }
+    }
 }
