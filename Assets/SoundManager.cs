@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     List<AudioClip> _clips;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _channels = GetComponents<AudioSource>().ToList();
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -23,10 +25,27 @@ public class GameController : MonoBehaviour
 
         _soundManager = FindObjectOfType<SoundManager>();
 
-        _soundManager.PlayMusic(Sound.MAIN_MUSIC);
+
+        if(SceneManager.GetActiveScene().Equals(SceneManager.GetSceneAt(0)))
+        {
+            _soundManager.PlayMusic(Sound.MAIN_MUSIC);
+        }
+        else if (SceneManager.GetActiveScene().Equals(SceneManager.GetSceneAt(1)))
+        {
+            _soundManager.PlayMusic(Sound.GAMEOVER_MUSIC);
+        }
+        
 
     }
 
-    // Update is called once per frame
+    public void LoadGameScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void GameOverScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
 }

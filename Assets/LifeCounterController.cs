@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LifeCounterController : MonoBehaviour
@@ -26,6 +27,8 @@ public class LifeCounterController : MonoBehaviour
         if(_currentLifeNumber <= 0)
         {
             //Game Over
+
+            SceneManager.LoadScene(1);
         }
 
         _lifeCounterUI.sprite = Resources.Load<Sprite>($"Sprites/LifeCounter/hud-{_currentLifeNumber}");
