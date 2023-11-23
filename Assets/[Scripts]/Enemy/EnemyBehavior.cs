@@ -58,6 +58,9 @@ public class EnemyBehavior : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
 
+    public float GetHitDamageAmount()
+        { return _hitDamage; }
+
     private void OnDrawGizmos()
     {
         Debug.DrawLine(_groundCheckPoint.position, _groundCheckPoint.position + Vector3.down * .95f, Color.green, .001f);

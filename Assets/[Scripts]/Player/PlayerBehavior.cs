@@ -36,6 +36,7 @@ public class PlayerBehavior : MonoBehaviour
 
     Animator _animator;
     SoundManager _soundManager;
+    HealthBarController _healthBarController;
     void Start()
     {
         if(GameObject.Find("OnScreenController"))
@@ -46,6 +47,7 @@ public class PlayerBehavior : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _soundManager = FindObjectOfType<SoundManager>();
+        _healthBarController = FindObjectOfType<HealthBarController>();
     }
 
     // Update is called once per frame
@@ -158,6 +160,7 @@ public class PlayerBehavior : MonoBehaviour
         if(collision.CompareTag("Enemy"))
         {
             //get damage
+            _healthBarController.TakeDamage(collision.GetComponent<EnemyBehavior>().GetHitDamageAmount());
 
             _soundManager.PlaySound(Channel.PLAYER_HURT_CHANNEL, Sound.PLAYER_HURT_SFX);
         }
