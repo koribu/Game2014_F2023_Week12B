@@ -10,6 +10,8 @@ public class HealthBarController : MonoBehaviour
 
     Slider _slider;
 
+    LifeCounterController _lifeCounterController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class HealthBarController : MonoBehaviour
         _maxHealth = _slider.maxValue;
         _currentHealth = _maxHealth;
 
+        _lifeCounterController = FindObjectOfType<LifeCounterController>();
         UpdateHealthBar();
     }
 
@@ -27,6 +30,9 @@ public class HealthBarController : MonoBehaviour
         if( _currentHealth <= 0 )
         {
             //lose life
+            _lifeCounterController.LoseLife();
+
+            _currentHealth = _maxHealth;
         }
 
         UpdateHealthBar();
@@ -35,9 +41,22 @@ public class HealthBarController : MonoBehaviour
     void UpdateHealthBar()
     {
         _slider.value = _currentHealth;
+        if(_slider.value > 70)
+        {
+            _slider.image.color = Color.green;
+        }
+        else if (_slider.value> 40)
+        {
+            _slider.image.color = Color.yellow;
+        }
+        else
+        {
+            _slider.image.color = Color.red;
+        }
+
     }  
     
-    void ResetHealth()
+    public void ResetHealth()
     {
         _currentHealth = _maxHealth;
 

@@ -22,11 +22,18 @@ public class Deathplane : MonoBehaviour
             collision.transform.position = _spawnPoint;
 
             _soundManager.PlaySound(Channel.PLAYER_DYING_CHANNEL, Sound.PLAYER_DYING_SFX);
+
+            FindObjectOfType<LifeCounterController>().LoseLife();
         }
     }
 
     public void UpdateSpawnPoint(Vector3 spawnPoint)
     {
         _spawnPoint = spawnPoint;
+    }
+
+    public void SpawnPlayerToCheckpoint()
+    {
+        FindObjectOfType<PlayerBehavior>().transform.position = _spawnPoint;
     }
 }
