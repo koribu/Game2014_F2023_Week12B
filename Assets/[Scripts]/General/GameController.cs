@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     GameObject _onScreenController;
 
+    SoundManager _soundManager;
+
     [SerializeField]
     bool _isTesting;
 
@@ -18,6 +20,10 @@ public class GameController : MonoBehaviour
             _onScreenController.SetActive(Application.platform != RuntimePlatform.WindowsEditor &&
                                           Application.platform != RuntimePlatform.WindowsPlayer);
         }
+
+        _soundManager = FindObjectOfType<SoundManager>();
+
+        _soundManager.PlayMusic(Sound.MAIN_MUSIC);
 
     }
 
